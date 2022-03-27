@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Developer</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <link rel="stylesheet" href="/bootstrap.min.css" media="screen"/>
+</head>
+<body>
+<div class="container">
+  <div class="page-header" id="banner">
+    <div class="row">
+      <div class="col-lg-8 col-md-7 col-sm-6">
+        <h1>Developer</h1>
+
+        <form class="form-horizontal" th:action="@{/student/{id}/subjects(id=${student.id})}" method="post" enctype="multipart/form-data" >
+          <fieldset>
+            <div class="form-group">
+              <label class="col-lg-2 control-label">Name</label>
+              <div class="col-lg-6">
+                <input type="text" class="form-control" disabled="disabled"
+                       th:value="${student.firstName + ' ' + student.lastName}"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-2 control-label">Email</label>
+              <div class="col-lg-6">
+                <input type="text" class="form-control" disabled="disabled"
+                       th:value="${student.email}"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-2 control-label">Skills</label>
+              <div class="col-lg-10">
+                <div th:each="subject : ${student.collegeSubjects}">
+                  <span th:text="${subject.label}" /> - <span th:text="${subject.description}" />
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-lg-6 col-lg-offset-2">
+                <div class="input-group">
+                  <select name="subjectId" class="form-control">
+                    <option th:each="collegeSubject : ${collegeSubjects}"
+                            th:value="${collegeSubject.id}"
+                            th:text="${collegeSubject.description}">Skill</option>
+                  </select>
+                  <span class="input-group-btn">
+									<button type="submit" class="btn btn-default">Add skill</button>
+								</span>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
