@@ -23,27 +23,29 @@ public class Assignment1Application implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		collegeSubject javascript = new collegeSubject("javascript", "Javascript language skill");
-		collegeSubject ruby = new collegeSubject("ruby", "Ruby language skill");
-		collegeSubject emberjs = new collegeSubject("emberjs", "Emberjs framework");
-		collegeSubject angularjs = new collegeSubject("angularjs", "Angularjs framework");
+		collegeSubject ooad = new collegeSubject("OOAD with Java", "Object Oriented Design with Java");
+		collegeSubject cd = new collegeSubject("CD", "Compiler Design");
+		collegeSubject cc = new collegeSubject("CC", "Cloud Computing");
+		collegeSubject tdl = new collegeSubject("TDL", "Topics in Deep Learning");
+		collegeSubject air=new collegeSubject("AIR","Algorithms for Information Retrieval");
 
-		subjectRepository.save(javascript);
-		subjectRepository.save(ruby);
-		subjectRepository.save(emberjs);
-		subjectRepository.save(angularjs);
+		subjectRepository.save(ooad);
+		subjectRepository.save(cd);
+		subjectRepository.save(cc);
+		subjectRepository.save(tdl);
+		subjectRepository.save(air);
 
 		List<Student> students = new LinkedList<>();
 		students.add(new Student("John", "Smith", "john.smith@example.com",
-				Arrays.asList(javascript, ruby)));
+				Arrays.asList(ooad,cd,cc)));
 		students.add(new Student("Mark", "Johnson", "mjohnson@example.com",
-				Arrays.asList(emberjs, ruby)));
+				Arrays.asList(cc,tdl)));
 		students.add(new Student("Michael", "Williams", "michael.williams@example.com",
-				Arrays.asList(angularjs, ruby)));
+				Arrays.asList(air,cd,ooad)));
 		students.add(new Student("Fred", "Miller", "f.miller@example.com",
-				Arrays.asList(emberjs, angularjs, javascript)));
+				Arrays.asList(cd,cc,tdl,air)));
 		students.add(new Student("Bob", "Brown", "brown@example.com",
-				Arrays.asList(emberjs)));
+				Arrays.asList(ooad)));
 		for(Student temp:students)
 		{
 			studentRepository.save(temp);

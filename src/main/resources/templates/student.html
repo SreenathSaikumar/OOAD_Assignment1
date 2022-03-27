@@ -11,7 +11,7 @@
   <div class="page-header" id="banner">
     <div class="row">
       <div class="col-lg-8 col-md-7 col-sm-6">
-        <h1>Developer</h1>
+        <h1>Student</h1>
 
         <form class="form-horizontal" th:action="@{/student/{id}/subjects(id=${student.id})}" method="post" enctype="multipart/form-data" >
           <fieldset>
@@ -41,7 +41,7 @@
               <div class="col-lg-6 col-lg-offset-2">
                 <div class="input-group">
                   <select name="subjectId" class="form-control">
-                    <option th:each="collegeSubject : ${collegeSubjects}"
+                    <option th:each="collegeSubject : ${subjects}"
                             th:value="${collegeSubject.id}"
                             th:text="${collegeSubject.description}">Skill</option>
                   </select>

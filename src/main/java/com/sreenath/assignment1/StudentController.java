@@ -23,7 +23,10 @@ public class StudentController {
 
     @RequestMapping("/student/{id}")
     public String student(@PathVariable Long id, Model model) {
-        model.addAttribute("student", repository.findById(id));
+        Optional<Student> optionalStudent = repository.findById(id);
+        Student student=optionalStudent.get();
+        //model.addAttribute("student", repository.findById(id));
+        model.addAttribute("student",student);
         model.addAttribute("subjects", subjectRepository.findAll());
         return "student";
     }
@@ -48,7 +51,7 @@ public class StudentController {
         return "redirect:/student/" + newStudent.getId();
     }
 
-    @RequestMapping(value="/student/{id}/subjectsS", method=RequestMethod.POST)
+    @RequestMapping(value="/student/{id}/subjects", method=RequestMethod.POST)
     public String studentsAddSkill(@PathVariable Long id, @RequestParam Long subjectId, Model model) {
         Optional<collegeSubject> optionalSubject = subjectRepository.findById(subjectId);
         collegeSubject subject=optionalSubject.get();
@@ -60,7 +63,9 @@ public class StudentController {
                 student.getCollegeSubjects().add(subject);
             }
             repository.save(student);
-            model.addAttribute("student", repository.findById(id));
+            Optional<Student> optionaltempStudent = repository.findById(id);
+            Student stud2=optionaltempStudent.get();
+            model.addAttribute("student", stud2);
             model.addAttribute("subjects", subjectRepository.findAll());
             return "redirect:/student/" + student.getId();
         }
